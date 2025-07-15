@@ -10,9 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth; /* Ensures smooth scrolling as a fallback */
-        }
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -22,7 +19,8 @@
             background-position: center;
         }
         .header-overlay {
-            background-color: rgba(0, 0, 0, 0.6);
+            /* Reduced overlay opacity from 0.6 to 0.4 to make the image more visible */
+            background-color: rgba(0, 0, 0, 0.45);
         }
         .header-title {
             font-family: 'Montserrat', sans-serif;
@@ -40,81 +38,64 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: box-shadow 0.3s ease-in-out;
         }
-        /* Styles for the slideshow */
-        .slideshow-container {
-            position: relative;
+
+        /* Keyframes for the float-in and shake animation */
+        @keyframes floatInAndShake {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(10px);
+                opacity: 1;
+            }
+            75% {
+                transform: translateY(-8px);
+            }
+            90% {
+                transform: translateY(4px);
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
-        .slide {
-            display: none;
-        }
-        .slide.active {
-            display: block;
-        }
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-        .prev {
-            left: 0;
-            border-radius: 3px 0 0 3px;
-        }
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
-        .video-responsive {
-            overflow: hidden;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            position: relative;
-            height: 0;
-        }
-        .video-responsive iframe {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            position: absolute;
+
+        /* Class to apply the animation to the header */
+        .header-animated {
+            animation: floatInAndShake 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <!-- Floating Header -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white header-bg">
+    <!-- Floating Header with animation class added -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white header-bg header-animated">
         <div class="header-overlay w-full">
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <!-- Left Spacer -->
                 <div class="w-24 md:w-32"></div>
+
+                <!-- Centered Title Block -->
                 <div class="text-center">
                     <h1 class="text-2xl md:text-4xl font-bold header-title">Jason Patino</h1>
                     <p class="text-sm md:text-lg font-light">Sr. Director of Recruiting, Realtor, Mentor</p>
                     <p class="text-md md:text-xl font-semibold mt-1">LPT Realty, Military Veterans Team</p>
                     <p class="text-lg md:text-2xl font-bold mt-2 tracking-wider">727-717-5090</p>
                 </div>
+
+                <!-- Profile Picture -->
                 <div class="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
-                    <img src="Site Assets/jasonprofile-h_l.jpg" alt="Jason Patino Profile Picture" class="rounded-full border-4 border-white shadow-lg object-cover w-full h-full" onerror="this.onerror=null;this.src='https://placehold.co/128x128/EFEFEF/333333?text=JP';">
+                    <img src="http://googleusercontent.com/file_content/1" alt="Jason Patino Profile Picture" class="rounded-full border-4 border-white shadow-lg object-cover w-full h-full">
                 </div>
             </div>
+            <!-- Navigation Bar -->
             <nav class="bg-gray-800 bg-opacity-75 backdrop-blur-sm">
                 <div class="container mx-auto px-6 py-2">
-                    <ul class="flex justify-center items-center flex-wrap space-x-6 md:space-x-12">
-                        <li><a href="#realty" class="nav-link text-white font-semibold py-2">About Jason</a></li>
+                    <ul class="flex justify-center items-center space-x-6 md:space-x-12">
+                        <li><a href="#realty" class="nav-link text-white font-semibold py-2">Realty</a></li>
                         <li><a href="#lpt-realty" class="nav-link text-white font-semibold py-2">LPT Realty</a></li>
                         <li><a href="#military-vets" class="nav-link text-white font-semibold py-2">Military Veterans Team</a></li>
-                        <li><a href="#testimonials" class="nav-link text-white font-semibold py-2">Testimonials</a></li>
                     </ul>
                 </div>
             </nav>
@@ -124,104 +105,28 @@
     <!-- Main Content -->
     <main class="pt-64 md:pt-72">
         <div class="container mx-auto p-6">
-            <!-- Your Trusted Real Estate Partner Section -->
+            <!-- Realty Section -->
             <section id="realty" class="mb-12 bg-white p-8 rounded-lg shadow-md">
-                <div class="md:flex md:space-x-8 items-center">
-                    <div class="md:w-1/2">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Your Trusted Real Estate Partner</h2>
-                        <p class="text-gray-600 leading-relaxed">Meet Jason Patino, a proud Floridian, REALTOR®, and Senior Director of Recruitment for the Military Veterans Team at LPT Realty, selling residential real estate, and managing vacation rentals since 2017, across Pinellas and Hillsborough Counties. Prior to his career in real estate, Jason ran recruiting departments for Fortune 100 and 500 companies. After joining the Military Veterans Team in 2023, he quickly transitioned into a full-time listing and buying agent, and in 2024, he earned Top Sales Person of the Year while leading recruitment and training for the team.</p>
-                        <p class="text-gray-600 leading-relaxed mt-4">His local expertise, sharpened by years running a successful vacation rental business, gives him a unique edge in identifying prime investment properties and dream homes alike. Whether you're relocating, searching for your ideal home, or exploring real estate as a career, Jason is here to guide you with dedication, market insight, and a commitment to excellence. Let’s connect and turn your real estate goals into reality.</p>
-                    </div>
-                    <div class="md:w-1/2 mt-6 md:mt-0">
-                        <div class="slideshow-container" data-slideshow="realty">
-                            <div class="slide active">
-                                <div class="video-responsive">
-                                    <iframe src="https://www.youtube.com/embed/_LrSK5qgItU" title="Realtor Testimonials - LPT Realty Military Vet Team #realtorsuccess #lptrealty #veteranrealtor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+2" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+3" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+4" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+5" frameborder="0" allowfullscreen></iframe></div></div>
-                            <a class="prev">&#10094;</a>
-                            <a class="next">&#10095;</a>
-                        </div>
-                        <div class="text-center mt-6">
-                            <a href="http://www.isellfl.me/team/jason-patino" target="_blank" rel="noopener noreferrer" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">Shop For Your Dream Home Now</a>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Your Trusted Real Estate Partner</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Whether you are buying your first home, selling your current property, or looking for an investment opportunity, I am here to guide you through every step of the process. With extensive knowledge of the local market and a commitment to personalized service, I ensure my clients achieve their real estate goals. My approach is built on trust, transparency, and dedication.
+                </p>
             </section>
 
             <!-- LPT Realty Section -->
             <section id="lpt-realty" class="mb-12 bg-white p-8 rounded-lg shadow-md">
-                 <div class="md:flex md:space-x-8 items-center">
-                    <div class="md:w-1/2">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Why LPT Realty?</h2>
-                        <p class="text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptate cumque officiis placeat nostrum culpa magnam eaque accusantium similique dolore odio possimus sed expedita, sapiente ab quidem id animi alias. Placeat nemo rem iure commodi?</p>
-                    </div>
-                    <div class="md:w-1/2 mt-6 md:mt-0">
-                        <div class="slideshow-container" data-slideshow="lpt-realty">
-                             <div class="slide active"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+1" frameborder="0" allowfullscreen></iframe></div></div>
-                             <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+2" frameborder="0" allowfullscreen></iframe></div></div>
-                             <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+3" frameborder="0" allowfullscreen></iframe></div></div>
-                             <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+4" frameborder="0" allowfullscreen></iframe></div></div>
-                             <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+5" frameborder="0" allowfullscreen></iframe></div></div>
-                            <a class="prev">&#10094;</a>
-                            <a class="next">&#10095;</a>
-                        </div>
-                        <div class="mt-6 flex justify-center items-center flex-wrap gap-4">
-                            <a href="http://Jasonpatino.lpt.com" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                                Join The Team!
-                            </a>
-                            <a href="mailto:JasonKnowsFlorida@Gmail.com" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                                Have Questions?
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Why LPT Realty?</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    As part of LPT Realty, I have access to cutting-edge technology, comprehensive market analysis, and a vast network of professionals. This allows me to provide you with unparalleled service and results. LPT Realty is known for its innovative approach and agent-centric model, empowering me to focus entirely on your needs.
+                </p>
             </section>
 
             <!-- Military Veterans Team Section -->
-            <section id="military-vets" class="mb-12 bg-white p-8 rounded-lg shadow-md">
-                <div class="md:flex md:space-x-8 items-center">
-                    <div class="md:w-1/2">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Military Veterans Team</h2>
-                        <p class="text-gray-600 leading-relaxed">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora quaerat nihil ullam iusto ad! Nisi molestiae deserunt obcaecati adipisci odio quae eos, dolorem, repellat accusamus dolores autem incidunt consectetur doloribus hic. Ipsam quasi porro hic.</p>
-                    </div>
-                    <div class="md:w-1/2 mt-6 md:mt-0">
-                        <div class="slideshow-container" data-slideshow="military-vets">
-                            <div class="slide active"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+1" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+2" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+3" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+4" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+5" frameborder="0" allowfullscreen></iframe></div></div>
-                            <a class="prev">&#10094;</a>
-                            <a class="next">&#10095;</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="bg-white p-8 rounded-lg shadow-md">
-                <div class="md:flex md:space-x-8 items-center">
-                    <div class="md:w-1/2">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Testimonials</h2>
-                        <p class="text-gray-600 leading-relaxed">Hear from satisfied clients and agents who have worked with me.</p>
-                    </div>
-                    <div class="md:w-1/2 mt-6 md:mt-0">
-                        <div class="slideshow-container" data-slideshow="testimonials">
-                            <div class="slide active"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+1" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+2" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+3" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+4" frameborder="0" allowfullscreen></iframe></div></div>
-                            <div class="slide"><div class="video-responsive"><iframe src="https://placehold.co/821x360/000000/FFFFFF?text=Placeholder+Video+5" frameborder="0" allowfullscreen></iframe></div></div>
-                            <a class="prev">&#10094;</a>
-                            <a class="next">&#10095;</a>
-                        </div>
-                    </div>
-                </div>
+            <section id="military-vets" class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Military Veterans Team</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    I am proud to lead the Military Veterans Team, a specialized group dedicated to serving those who have served our country. We understand the unique challenges and benefits available to veterans in the real estate market, including VA loans. Our mission is to provide a seamless and supportive experience for our military clients and their families.
+                </p>
             </section>
         </div>
     </main>
@@ -231,72 +136,25 @@
         <div class="container mx-auto text-center">
             <p class="mb-4">Connect with me on social media</p>
             <div class="flex justify-center space-x-6">
-                <a href="https://www.facebook.com/jasonpatino" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/jason.patino/" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/jasonpatino" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.youtube.com/jasonpatino" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.linkedin.com/in/jasonpatino/" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.tiktok.com/@jason.patino" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <p class="mt-6 text-sm text-gray-400">&copy; 2024 Jason Patino. All Rights Reserved. LPT Realty.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth scrolling for navigation
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        // Add a shadow to the header on scroll for a subtle animation
+        window.addEventListener('scroll', function() {
             const header = document.getElementById('main-header');
-            if (header) {
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-                        const targetElement = document.querySelector(targetId);
-                        if (targetElement) {
-                            const headerHeight = header.offsetHeight;
-                            const buffer = 20;
-                            const targetPosition = targetElement.offsetTop - headerHeight - buffer;
-                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                        }
-                    });
-                });
+            if (window.scrollY > 10) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
             }
-
-            // Header shadow on scroll
-            window.addEventListener('scroll', function() {
-                const headerForShadow = document.getElementById('main-header');
-                if (headerForShadow) {
-                    headerForShadow.classList.toggle('header-scroll', window.scrollY > 10);
-                }
-            });
-
-            // Slideshow functionality
-            const slideshows = document.querySelectorAll('.slideshow-container');
-            slideshows.forEach(slideshow => {
-                const slides = slideshow.querySelectorAll('.slide');
-                const prev = slideshow.querySelector('.prev');
-                const next = slideshow.querySelector('.next');
-                let slideIndex = 0;
-
-                function showSlide(index) {
-                    slides.forEach((slide, i) => {
-                        slide.classList.toggle('active', i === index);
-                    });
-                }
-
-                prev.addEventListener('click', () => {
-                    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-                    showSlide(slideIndex);
-                });
-
-                next.addEventListener('click', () => {
-                    slideIndex = (slideIndex + 1) % slides.length;
-                    showSlide(slideIndex);
-                });
-
-                showSlide(slideIndex); // Show the first slide initially
-            });
         });
     </script>
 

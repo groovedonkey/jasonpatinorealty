@@ -110,7 +110,6 @@
 </head>
 <body class="bg-gray-100">
 
-    <!-- Floating Header -->
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white header-bg header-animated">
         <div class="header-overlay w-full">
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -119,7 +118,7 @@
                     <h1 class="text-2xl md:text-4xl font-bold header-title">Jason Patino</h1>
                     <p class="text-sm md:text-lg font-light">Sr. Director of Recruiting, Realtor, Mentor</p>
                     <p class="text-md md:text-xl font-semibold mt-1">LPT Realty, Military Veterans Team</p>
-                    <p class="text-lg md:text-2xl font-bold mt-2 tracking-wider">727-717-5090</p>
+                    <p class="text-lg md:text-2xl font-bold mt-2 tracking-wider">727-722-8922</p>
                 </div>
                 <div class="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
                     <img src="https://github.com/groovedonkey/jasonpatinorealty/blob/main/jasonprofile-h_l.jpg?raw=true" alt="Jason Patino Profile Picture" class="rounded-full border-4 border-white shadow-lg object-cover w-full h-full">
@@ -127,27 +126,25 @@
             </div>
             <nav class="bg-gray-800 bg-opacity-75 backdrop-blur-sm">
                 <div class="container mx-auto px-6 py-2">
-                    <ul class="flex justify-center items-center space-x-6 md:space-x-12">
+                    <ul class="flex justify-center items-center space-x-4 md:space-x-8">
                         <li><a href="#about" class="nav-link text-white font-semibold py-2">About Jason</a></li>
                         <li><a href="#lpt-realty" class="nav-link text-white font-semibold py-2">LPT Realty</a></li>
                         <li><a href="#military-vets" class="nav-link text-white font-semibold py-2">Military Veterans Team</a></li>
-                        <li><a href="#testimonials" class="nav-link text-white font-semibold py-2">Testimonials</a></li>
+                        <li><a href="#real-estate-testimonials" class="nav-link text-white font-semibold py-2">Real Estate Testimonials</a></li>
+                        <li><a href="#team-testimonials" class="nav-link text-white font-semibold py-2">Team Testimonials</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="pt-64 md:pt-72">
         <div class="container mx-auto p-6 space-y-16">
 
-            <!-- About Jason Section -->
             <section id="about" class="bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">About Jason</h2>
                 <div class="slideshow-container" id="slideshow1">
                     <div class="slides-wrapper">
-                        <!-- Slide 1 -->
                         <div class="slide p-4">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                                 <div class="text-gray-600 leading-relaxed">
@@ -158,7 +155,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slides 2-5 -->
                         <script>
                             for (let i = 2; i <= 5; i++) {
                                 document.write(`
@@ -180,7 +176,6 @@
                 </div>
             </section>
 
-            <!-- LPT Realty Section -->
             <section id="lpt-realty" class="bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Why LPT Realty?</h2>
                 <div class="slideshow-container" id="slideshow2">
@@ -202,12 +197,11 @@
                     <div class="slide-arrow next"><i class="fas fa-chevron-right"></i></div>
                 </div>
                 <div class="text-center mt-8 flex justify-center items-center space-x-4">
-                    <a href="http://Jasonpatino.lpt.com" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors text-lg">Sign Up Now!</a>
-                    <a href="mailto:JasonKnowsFlorida@Gmail.com" class="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-700 transition-colors text-lg">Questions?</a>
+                    <a href="https://jasonpatino.lpt.com/onboard" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors text-lg">Sign Up Now!</a>
+                    <a href="mailto:JasonKnowsFlorida@Gmail.com?cc=dro@groovedonkey.com" class="inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-700 transition-colors text-lg">Questions?</a>
                 </div>
             </section>
 
-            <!-- Military Veterans Team Section -->
             <section id="military-vets" class="bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Military Veterans Team</h2>
                 <div class="slideshow-container" id="slideshow3">
@@ -230,17 +224,38 @@
                 </div>
             </section>
             
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="bg-white p-8 rounded-lg shadow-md">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Testimonials</h2>
-                <div class="slideshow-container" id="slideshow4">
+            <section id="real-estate-testimonials" class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Real Estate Testimonials</h2>
+                <div class="slideshow-container" id="slideshow-real-estate">
                     <div class="slides-wrapper">
                         <script>
                             for (let i = 1; i <= 5; i++) {
                                 document.write(`
                                 <div class="slide p-4">
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                                        <p class="text-gray-600 leading-relaxed">Testimonial from a happy client - Slide ${i}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p class="text-gray-600 leading-relaxed">Real Estate Testimonial from a happy client - Slide ${i}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="video-placeholder"><i class="fas fa-play-circle"></i></div>
+                                    </div>
+                                </div>
+                                `);
+                            }
+                        </script>
+                    </div>
+                    <div class="slide-arrow prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="slide-arrow next"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </section>
+
+            <section id="team-testimonials" class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-amber-500 pb-2">Team Testimonials</h2>
+                <div class="slideshow-container" id="slideshow-team">
+                    <div class="slides-wrapper">
+                        <script>
+                            for (let i = 1; i <= 5; i++) {
+                                document.write(`
+                                <div class="slide p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                        <p class="text-gray-600 leading-relaxed">Team Testimonial from a happy team member - Slide ${i}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                         <div class="video-placeholder"><i class="fas fa-play-circle"></i></div>
                                     </div>
                                 </div>
@@ -256,7 +271,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-12 py-8">
         <div class="container mx-auto text-center">
             <p class="mb-4">Connect with me on social media</p>
@@ -268,7 +282,7 @@
                 <a href="https://www.linkedin.com/in/jasonpatino/" target="_blank" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://www.tiktok.com/@jason.patino" target="_blank" class="text-2xl hover:text-amber-500 transition-colors"><i class="fab fa-tiktok"></i></a>
             </div>
-            <p class="mt-6 text-sm text-gray-400">&copy; 2024 Jason Patino. All Rights Reserved. LPT Realty.</p>
+            <p class="mt-6 text-sm text-gray-400">© 2024 Jason Patino. All Rights Reserved. LPT Realty.</p>
         </div>
     </footer>
 
@@ -322,7 +336,8 @@
             initializeSlideshow('slideshow1');
             initializeSlideshow('slideshow2');
             initializeSlideshow('slideshow3');
-            initializeSlideshow('slideshow4');
+            initializeSlideshow('slideshow-real-estate');
+            initializeSlideshow('slideshow-team');
 
             // Smooth scrolling for navigation links
             const navLinks = document.querySelectorAll('nav a[href^="#"]');

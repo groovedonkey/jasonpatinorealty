@@ -1,0 +1,96 @@
+body {
+    font-family: 'Inter', sans-serif;
+    /* scroll-behavior is now handled by JavaScript for better control */
+}
+.header-bg {
+    background-image: url('https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center;
+}
+.header-overlay {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+.header-title {
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+.nav-link {
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+.nav-link:hover {
+    color: #f59e0b;
+    border-bottom-color: #f59e0b;
+}
+.header-scroll {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease-in-out;
+}
+@keyframes floatInAndShake {
+    0% { transform: translateY(-100%); opacity: 0; }
+    70% { transform: translateY(10px); opacity: 1; }
+    80% { transform: translateY(-10px) rotate(-1.5deg); }
+    90% { transform: translateY(5px) rotate(1.5deg); }
+    95% { transform: translateY(-2px) rotate(-0.5deg); }
+    100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+.header-animated {
+    animation: floatInAndShake 2.5s ease-out forwards;
+}
+/* Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    overflow: hidden;
+}
+.slides-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+.slide-arrow:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.slide-arrow.prev { left: 1rem; }
+.slide-arrow.next { right: 1rem; }
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+.video-placeholder i {
+    font-size: 3rem;
+    color: #94a3b8;
+}
+/* Offset for fixed header when scrolling to anchors */
+section[id] {
+    scroll-margin-top: 16rem; /* Corresponds to pt-64 */
+}
+@media (min-width: 768px) {
+    section[id] {
+        scroll-margin-top: 18rem; /* Corresponds to md:pt-72 */
+    }
+}

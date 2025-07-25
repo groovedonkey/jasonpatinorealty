@@ -29,15 +29,30 @@
             </div>
             <nav class="bg-gray-800 bg-opacity-75 backdrop-blur-sm">
                 <div class="container mx-auto px-6 py-2">
-                    <ul class="flex justify-center items-center space-x-4 md:space-x-8">
+                    <ul class="hidden md:flex justify-center items-center space-x-4 md:space-x-8">
                         <li><a href="#about" class="nav-link text-white font-semibold py-2">About Jason</a></li>
                         <li><a href="#lpt-realty" class="nav-link text-white font-semibold py-2">LPT Realty</a></li>
                         <li><a href="#military-vets" class="nav-link text-white font-semibold py-2">Military Veterans Team</a></li>
                         <li><a href="#real-estate-testimonials" class="nav-link text-white font-semibold py-2">Real Estate Testimonials</a></li>
                         <li><a href="#team-testimonials" class="nav-link text-white font-semibold py-2">Team Testimonials</a></li>
                     </ul>
+                    <div class="md:hidden text-center">
+                        <button id="hamburger-button" class="text-white focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                            <span class="font-semibold ml-2">Menu</span>
+                        </button>
+                    </div>
                 </div>
             </nav>
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95">
+                <ul class="flex flex-col items-center space-y-4 py-4">
+                    <li><a href="#about" class="nav-link text-white font-semibold py-2">About Jason</a></li>
+                    <li><a href="#lpt-realty" class="nav-link text-white font-semibold py-2">LPT Realty</a></li>
+                    <li><a href="#military-vets" class="nav-link text-white font-semibold py-2">Military Veterans Team</a></li>
+                    <li><a href="#real-estate-testimonials" class="nav-link text-white font-semibold py-2">Real Estate Testimonials</a></li>
+                    <li><a href="#team-testimonials" class="nav-link text-white font-semibold py-2">Team Testimonials</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 

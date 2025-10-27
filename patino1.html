@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jason Patino - Real Estate Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* Base */
+    body{
+      font-family:'Inter',sans-serif;
+      background-color:#0a0f1f;
+      color:#e0e0e0;
+      overflow-x:hidden;
+      position:relative;
+      z-index:0;
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:url('https://github.com/groovedonkey/jasonpatinorealty/blob/main/homebg.png?raw=true');
+      background-size:cover; background-position:center; background-attachment:fixed;
+      opacity:.35; z-index:-1;
+    }
+
+    /* Custom palette helpers */
+    .bg-gold-500{ background-color:#D4AF37; }
+    .text-gold-500{ color:#D4AF37; }
+    .border-gold-500{ border-color:#D4AF37; }
+    .hover\:bg-gold-600:hover{ background-color:#C39D30; }
+
+    .bg-navy-900{ background-color:rgba(10,15,31,.95); }
+    .bg-navy-800{ background-color:rgba(16,26,53,.95); }
+    .bg-navy-700{ background-color:rgba(26,36,68,.95); }
+
+    /* Header art */
+    .header-bg{
+      background-image:url('https://images.unsplash.com/photo-1620023190867-009d18e8035b?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');
+      background-size:cover; background-position:center; position:relative;
+    }
+    .header-bg::before{
+      content:""; position:absolute; inset:0; background-color:rgba(10,15,31,.7); z-index:1;
+    }
+    .header-content{ position:relative; z-index:2; }
+
+    /* Video placeholder (used for image “play” cards) */
+    .video-placeholder{
+      position:relative; aspect-ratio:16/9; background:#000; border-radius:.75rem;
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+      border:2px solid rgba(212,175,55,.4); cursor:pointer; transition:transform .3s,border-color .3s;
+      box-shadow:0 10px 20px rgba(0,0,0,.3);
+    }
+    .video-placeholder:hover{ transform:translateY(-5px); border-color:#D4AF37; }
+    .video-placeholder-icon{ width:4.5rem; height:4.5rem; color:rgba(255,255,255,.9); z-index:10; transition:transform .3s, opacity .3s; filter:drop-shadow(0 2px 5px rgba(0,0,0,.5)); }
+    .video-placeholder:hover .video-placeholder-icon{ transform:scale(1.15); opacity:1; }
+    .video-placeholder-text{ position:absolute; bottom:1rem; left:1rem; font-size:.875rem; color:rgba(255,255,255,.7); }
+    .video-placeholder img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(.7); transition:filter .3s; }
+    .video-placeholder:hover img{ filter:brightness(.6); }
+
+    /* Carousel */
+    .carousel-container{ position:relative; overflow:hidden; border-radius:.75rem; box-shadow:0 15px 30px rgba(0,0,0,.4); }
+    .carousel-track{ display:flex; transition:transform .5s ease-in-out; padding-bottom:2rem; }
+    .carousel-slide{ flex:0 0 100%; box-sizing:border-box; padding:1rem; }
+    @media (min-width:768px){ .carousel-slide{ flex:0 0 calc(100% / 3); } }
+    .carousel-dots{ position:absolute; bottom:1rem; left:50%; transform:translateX(-50%); display:flex; gap:.6rem; }
+    .carousel-dot{ width:.8rem; height:.8rem; border-radius:50%; background-color:rgba(255,255,255,.5); transition:background-color .3s, transform .3s; cursor:pointer; }
+    .carousel-dot.active{ background-color:#D4AF37; transform:scale(1.2); }
+
+    /* On-scroll anims */
+    .fade-in-up{ opacity:0; transform:translateY(20px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .fade-in-up.animate{ opacity:1; transform:translateY(0); }
+    .slide-in-left{ opacity:0; transform:translateX(-50px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .slide-in-left.animate{ opacity:1; transform:translateX(0); }
+    .slide-in-right{ opacity:0; transform:translateX(50px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .slide-in-right.animate{ opacity:1; transform:translateX(0); }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- Header / Nav -->
+  <header class="header-bg sticky top-0 z-50 shadow-xl">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 header-content" aria-label="Primary">
+      <div class="flex justify-between items-center h-20">
+        <a href="#hero" class="text-3xl font-extrabold text-white">Jason<span class="text-gold-500">Patino</span></a>
+
+        <!-- Desktop menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-6">
+            <a href="#realty" class="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-base font-medium">Find Your New Home</a>
+            <a href="#brokerage" class="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-base font-medium">Join LPT Realty</a>
+            <a href="#vets" class="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-base font-medium">Join Military Vets Team</a>
+            <a href="#contact" class="bg-gold-500 text-black hover:bg-gold-600 ml-6 px-5 py-2.5 rounded-lg text-base font-bold shadow-md transition-all transform hover:scale-105">Contact Me</a>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="-mr-2 flex md:hidden">
+          <button id="mobile-menu-button" type="button"
+                  class="bg-navy-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-navy-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+                  aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg id="menu-open-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/>
+            </svg>
+            <svg id="menu-close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-navy-800 rounded-b-lg">
+          <a href="#realty" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-navy-700 hover:text-white">Find Your New Home</a>
+          <a href="#brokerage" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-navy-700 hover:text-white">Join LPT Realty</a>
+          <a href="#vets" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-navy-700 hover:text-white">Join Military Vets Team</a>
+          <a href="#contact" class="block w-full text-center px-3 py-2 rounded-md text-base font-bold bg-gold-500 text-black hover:bg-gold-600 shadow-md mt-2">Contact Me</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="h-screen flex items-center justify-center text-center bg-cover bg-center relative overflow-hidden"
+           style="background-image:url('https://images.unsplash.com/photo-1519782845869-9856f7773dfd?auto=format&fit=crop&q=80&w=1920&h=1080&ixlib=rb-4.0.3');">
+    <div class="absolute inset-0 bg-black opacity-60"></div>
+    <div class="relative z-10 p-8 rounded-lg fade-in-up">
+      <img src="https://github.com/groovedonkey/jasonpatinorealty/blob/main/jasonprofile-h_l.jpg?raw=true" alt="Jason Patino" class="mx-auto mb-8 w-48 h-48 rounded-full object-cover border-4 border-gold-500 shadow-xl"/>
+      <h1 class="text-6xl md:text-8xl font-extrabold text-white drop-shadow-lg leading-tight">Jason Patino</h1>
+      <p class="mt-4 text-2xl md:text-4xl font-semibold text-gold-500 drop-shadow-md">REALTOR®, Mentor, Sr. Director of Recruiting</p>
+      <p class="mt-2 text-xl md:text-2xl font-medium text-gray-200 drop-shadow-md">LPT Realty | Military Veterans Team</p>
+      <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto drop-shadow-md">
+        I’m Jason Patino — a proud Floridian, REALTOR®, and Senior Director of Recruitment for the Military Veterans Team at LPT Realty. I specialize in residential sales and have managed vacation rentals across Pinellas and Hillsborough Counties since 2017. Before real estate, I led recruiting teams for Fortune 100 and 500 companies. Since joining LPT in 2023, I’ve become a full-time listing and buyer’s agent, earning Top Salesperson of the Year in 2024 while leading team recruitment and training. My local expertise and investment insight help clients find both dream homes and profitable properties. Whether you’re buying, selling, or exploring a real estate career, I’m here to guide you with dedication and market expertise.
+      </p>
+      <a href="#realty" class="mt-10 inline-block bg-gold-500 text-black hover:bg-gold-600 px-10 py-4 rounded-lg text-xl font-bold shadow-xl transform transition-all duration-300 hover:scale-105">Explore My Services</a>
+    </div>
+  </section>
+
+  <main class="overflow-x-hidden">
+
+    <!-- Realty -->
+    <section id="realty" class="py-24 bg-navy-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div class="relative aspect-video rounded-xl overflow-hidden border-2 border-gold-500/40 shadow-2xl fade-in-up delay-200">
+            <!-- UPDATED: Changed src and title as requested -->
+            <iframe class="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/QCTmv87J_Z8?si=f6l6dcDt9f2GURK9"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="text-left fade-in-up delay-400">
+            <h2 class="text-5xl font-extrabold text-white mb-6 leading-tight">Your Trusted Partner in <span class="text-gold-500">Real Estate</span></h2>
+            <div class="prose prose-invert max-w-none text-gray-300 space-y-4 text-lg">
+              <p>Whether you are buying your first home, selling a beloved property, or seeking your next investment, my commitment is to provide unparalleled service and expert guidance. With years of experience in the local market, I leverage deep industry knowledge to ensure you achieve your real estate goals with confidence and clarity.</p>
+              <p>I prioritize understanding your unique needs to deliver tailored solutions and outstanding results.</p>
+            </div>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4">
+              <a href="http://www.isellfl.me/team/jason-patino" target="_blank" rel="noopener noreferrer"
+                 class="inline-block bg-gold-500 text-black hover:bg-gold-600 px-10 py-4 rounded-lg text-xl font-bold shadow-lg transform transition-all duration-300 hover:scale-105 text-center">
+                Find Your Dream Home
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brokerage -->
+    <section id="brokerage" class="py-24 bg-navy-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <!-- UPDATED: Wrapped iframe in a responsive aspect-ratio container -->
+          <div class="fade-in-up delay-200">
+            <div class="relative aspect-video rounded-xl overflow-hidden border-2 border-gold-500/40 shadow-2xl max-w-xl mx-auto">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/-LiiQ-Iz2vM?si=1Pv9k1_53RnxwUG1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="text-left fade-in-up delay-400">
+            <h2 class="text-5xl font-extrabold text-white mb-6 leading-tight">Build your Career with <span class="text-gold-500">LPT Realty</span></h2>
+            <div class="prose prose-invert max-w-none text-gray-300 space-y-4 text-lg">
+              <p>Get ready to discover what makes LPT Realty the most exciting brokerage in the Sunshine State! We focus on empowering our agents to win big. With revolutionary tech and a culture of support, you get everything you need to build a powerhouse career.</p>
+              <p>Watch the video as Jason Patino, Sr. Director of Recruiting, walks through what makes the experience different. Ready to make a move?</p>
+            </div>
+            <a href="#contact" class="mt-10 inline-block bg-gold-500 text-black hover:bg-gold-600 px-10 py-4 rounded-lg text-xl font-bold shadow-lg transform transition-all duration-300 hover:scale-105">
+              Join LPT Realty
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brokerage Testimonials (Carousel) -->
+    <section id="brokerage-testimonials" class="py-24 bg-navy-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-5xl font-extrabold text-white text-center mb-16 leading-tight fade-in-up">The Numbers <span class="text-gold-500">Don't Lie!</span></h2>
+
+        <div id="carousel-brokerage" class="carousel-container shadow-2xl fade-in-up delay-200">
+          <div class="carousel-track">
+            <div class="carousel-slide carousel-video" data-index="0">
+              <div class="flex justify-center items-center h-full">
+                <iframe class="max-w-full rounded-xl shadow-2xl border-2 border-gold-500/40 w-full aspect-video"
+                        src="https://www.youtube.com/embed/s6T22ztPcMo?si=Uyv5HWGvp8K87Phw" title="Brokerage Testimonial 1" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="carousel-slide carousel-video" data-index="1">
+              <div class="flex justify-center items-center h-full">
+                <iframe class="max-w-full rounded-xl shadow-2xl border-2 border-gold-500/40 w-full aspect-video"
+                        src="https://www.youtube.com/embed/HoKqISm02yY?si=VpR6gzJVZMIPM0Hv" title="Brokerage Testimonial 2" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="carousel-slide carousel-video" data-index="2">
+              <div class="flex justify-center items-center h-full">
+                <iframe class="max-w-full rounded-xl shadow-2xl border-2 border-gold-500/40 w-full aspect-video"
+                        src="https://www.youtube.com/embed/3AkSY5Z8OFI?si=ujgJElIbfxTPXYX1" title="Brokerage Testimonial 3" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-dots" id="dots-brokerage" aria-label="Brokerage testimonials pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veterans Team -->
+    <section id="vets" class="py-24 bg-navy-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div class="text-left md:order-2 fade-in-up delay-200">
+            <h2 class="text-5xl font-extrabold text-white mb-6 leading-tight">A Premier Team For Those <span class="text-gold-500">Who Served</span></h2>
+            <div class="prose prose-invert max-w-none text-gray-300 space-y-4 text-lg">
+              <p>As LPT Realty's fastest-growing premier team, the Military Veterans Team clears the path for you to succeed. We provide comprehensive support—from premium Zillow listings to seamless contract writing—so your momentum never stalls. We've built an elite system designed to handle the administrative drag, allowing you to focus on building your business. With our team managing the backend, you are free to maximize your client-facing time and earning potential. You’ll also receive dedicated mentoring to continuously sharpen your skills and stay ahead of the competition. Join a team that works as hard for you as you do for your clients and redefine what's possible in your career.</p>
+            </div>
+            <a href="#contact" class="mt-10 inline-block bg-gold-500 text-black hover:bg-gold-600 px-10 py-4 rounded-lg text-xl font-bold shadow-lg transform transition-all duration-300 hover:scale-105">
+              Explore the Veterans Team
+            </a>
+          </div>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/te0eOeWSZfk?si=I1Loj8QOEpxCdmo7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veterans Testimonials (Carousel) -->
+    <section id="vets-testimonials" class="py-24 bg-navy-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-5xl font-extrabold text-white text-center mb-16 leading-tight fade-in-up">From Service to <span class="text-gold-500">Success</span></h2>
+
+        <div id="carousel-vets" class="carousel-container shadow-2xl fade-in-up delay-200">
+          <div class="carousel-track">
+            <!-- five slides (image play-cards) -->
+            <div class="carousel-slide carousel-video" data-index="0">
+              <div class="video-placeholder">
+                <img src="https://images.unsplash.com/photo-1521404323133-c1ffcf4cf314?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 1"/>
+                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
+                <span class="video-placeholder-text">Vet Testimonial 1 - Tap to play</span>
+              </div>
+            </div>
+            <div class="carousel-slide carousel-video" data-index="1">
+              <div class="video-placeholder">
+                <img src="https://images.unsplash.com/photo-1534065633-979de8782a20?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 2"/>
+                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
+                <span class="video-placeholder-text">Vet Testimonial 2 - Tap to play</span>
+              </div>
+            </div>
+            <div class="carousel-slide carousel-video" data-index="2">
+              <div class="video-placeholder">
+                <img src="https://images.unsplash.com/photo-1521404323133-c1ffcf4cf314?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 3"/>
+                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
+                <span class="video-placeholder-text">Vet Testimonial 3 - Tap to play</span>
+              </div>
+            </div>
+            <div class="carousel-slide carousel-video" data-index="3">
+              <div class="video-placeholder">
+                <img src="https://images.unsplash.com/photo-1534065633-979de8782a20?auto=format&fit-crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 4"/>
+                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
+                <span class="video-placeholder-text">Vet Testimonial 4 - Tap to play</span>
+              </div>
+            </div>
+            <div class="carousel-slide carousel-video" data-index="4">
+              <div class="video-placeholder">
+                <img src="https://images.unsplash.com/photo-1521404323133-c1ffcf4cf314?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 5"/>
+                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
+                <span class="video-placeholder-text">Vet Testimonial 5 - Tap to play</span>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-dots" id="dots-vets" aria-label="Veterans testimonials pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-navy-900">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-up">
+        <h2 class="text-5xl font-extrabold text-white mb-6 leading-tight">Get In <span class="text-gold-500">Touch</span></h2>
+        <p class="text-lg text-gray-300 mb-12">
+          Whether you're buying, selling, or ready to take your real estate career to the next level, we're here to help!       </p>
+        <form action="#" method="POST" class="space-y-8">
+          <div>
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" name="name" id="name" autocomplete="name"
+                   class="w-full px-6 py-4 rounded-xl bg-navy-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg"
+                   placeholder="Your Name" required>
+          </div>
+          <div>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" name="email" id="email" autocomplete="email"
+                   class="w-full px-6 py-4 rounded-xl bg-navy-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg"
+                   placeholder="Your Email" required>
+          </div>
+          <div>
+            <label for="interest" class="sr-only">I'm interested in...</label>
+            <select id="interest" name="interest"
+                    class="w-full px-6 py-4 rounded-xl bg-navy-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg"
+                    required>
+              <option value="" disabled selected class="text-gray-500">I'm interested in...</option>
+              <option value="realty">Buying/Selling Real Estate</option>
+              <option value="brokerage">Join LPT Realty (New Agent)</option>
+              <option value="vets">Join the exclusive Military Veterans Team (Existing LPT Agent)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="message" class="sr-only">Message</label>
+            <textarea id="message" name="message" rows="5"
+                      class="w-full px-6 py-4 rounded-xl bg-navy-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent text-lg"
+                      placeholder="Your Message"></textarea>
+          </div>
+          <div>
+            <button type="submit"
+                    class="w-full bg-gold-500 text-black hover:bg-gold-600 px-10 py-4 rounded-xl text-xl font-bold shadow-xl transform transition-all duration-300 hover:scale-105">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy-800 border-t border-gray-700">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <div class="flex justify-center space-x-8 mb-6">
+        <a href="#" class="text-gray-400 hover:text-gold-500 transition-colors transform hover:scale-110" aria-label="Facebook">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-gold-500 transition-colors transform hover:scale-110" aria-label="Instagram">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.009-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-.949-.056-1.287-.056-3.69s.009-2.741.056-3.69c.046-1.003.21-1.503.37-1.894a3.282 3.282 0 00-1.18-1.18c-.391-.16-.891-.324-1.894-.37-.949-.046-1.287-.056-3.69-.056zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zm5.338-9.87a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd"/></svg>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-gold-500 transition-colors transform hover:scale-110" aria-label="LinkedIn">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+      </div>
+      <p class="text-sm text-gray-500">[Brokerage Name] | [License Information] | Equal Housing Opportunity</p>
+      <p class="mt-2 text-sm text-gray-500">&copy; 2025 Jason Patino. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* Mobile menu toggle */
+      const menuButton=document.getElementById('mobile-menu-button');
+      const mobileMenu=document.getElementById('mobile-menu');
+      const openIcon=document.getElementById('menu-open-icon');
+      const closeIcon=document.getElementById('menu-close-icon');
+      menuButton.addEventListener('click',()=>{
+        const isHidden=mobileMenu.classList.toggle('hidden');
+        openIcon.classList.toggle('hidden',!isHidden);
+        closeIcon.classList.toggle('hidden',isHidden);
+        menuButton.setAttribute('aria-expanded', String(!isHidden));
+      });
+      mobileMenu.querySelectorAll('a').forEach(link=>{
+        link.addEventListener('click',()=>{
+          mobileMenu.classList.add('hidden');
+          openIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          menuButton.setAttribute('aria-expanded','false');
+        });
+      });
+
+      /* Carousel helper */
+      function setupCarousel(rootId, dotsId){
+        const root=document.getElementById(rootId);
+        if(!root) return;
+        const track=root.querySelector('.carousel-track');
+        const slides=Array.from(track.querySelectorAll('.carousel-slide'));
+        const dotsContainer=document.getElementById(dotsId);
+
+        let currentGroup=0;
+        let slidesPerView = window.innerWidth>=768 ? 3 : 1;
+        let autoRotate;
+
+        const groupCount = () => Math.max(1, Math.ceil(slides.length / (window.innerWidth>=768?3:1)));
+
+        function renderDots(){
+          if(!dotsContainer) return;
+          dotsContainer.innerHTML='';
+          const total=groupCount();
+          for(let i=0;i<total;i++){
+            const b=document.createElement('button');
+            b.className='carousel-dot'+(i===0?' active':'');
+            b.setAttribute('aria-label','Go to slide group '+(i+1));
+            b.addEventListener('click',()=>{ goTo(i); pause(); resumeLater(); });
+            dotsContainer.appendChild(b);
+          }
+        }
+
+        function updateDots(){
+          if(!dotsContainer) return;
+          const dots = dotsContainer.querySelectorAll('.carousel-dot');
+          dots.forEach((d,i)=>d.classList.toggle('active', i===currentGroup));
+        }
+
+        function goTo(groupIndex){
+          const total=groupCount();
+          currentGroup=(groupIndex+total)%total;
+          const pct = (100 * currentGroup);
+          track.style.transform=`translateX(-${pct}%)`;
+          updateDots();
+        }
+
+        function next(){ goTo(currentGroup+1); }
+        function pause(){ clearInterval(autoRotate); }
+        function start(){ pause(); autoRotate=setInterval(next, 10000); }
+        function resumeLater(){ setTimeout(start, 15000); }
+
+        // pause when a “video” card is clicked
+        track.querySelectorAll('.carousel-video').forEach(card=>{
+          card.addEventListener('click',()=>{ pause(); resumeLater(); });
+        });
+
+        // handle resize (recompute groups & snap)
+        window.addEventListener('resize',()=>{
+          const newSPV = window.innerWidth>=768 ? 3 : 1;
+          if(newSPV !== slidesPerView){
+            slidesPerView = newSPV;
+            track.style.transition='none';
+            renderDots();
+            goTo(0);
+            setTimeout(()=>{ track.style.transition='transform .5s ease-in-out'; }, 50);
+          }
+        });
+
+        // init
+        renderDots();
+        goTo(0);
+        start();
+      }
+
+      setupCarousel('carousel-brokerage','dots-brokerage');
+      setupCarousel('carousel-vets','dots-vets');
+
+      /* Scroll animations */
+      const animateOnScroll=()=>{
+        const els=document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
+        const obs=new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){ entry.target.classList.add('animate'); }
+            else{ entry.target.classList.remove('animate'); }
+          });
+        },{threshold:.1});
+        els.forEach(el=>obs.observe(el));
+      };
+      animateOnScroll();
+    });
+  </script>
+</body>
+</html>
+
+

@@ -17,14 +17,20 @@
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Jason Patino - Tampa Bay REALTOR® & Real Estate Expert"/>
   <meta property="og:description" content="Expert real estate services in Tampa, Clearwater, and Tampa Bay area. Your trusted partner for buying and selling homes."/>
-  <meta property="og:image" content="https://github.com/groovedonkey/jasonpatinorealty/blob/main/jasonprofile-h_l.jpg?raw=true"/>
+  <meta property="og:image" content="./jasonprofile-h_l.jpg"/>
   <meta property="og:url" content="https://jasonpatino.com"/>
   
+  <!-- Favicon (replace with actual favicon when available) -->
+  <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+
   <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./styles.css"/>
 
   <!-- Structured Data (JSON-LD) for Local Business SEO -->
   <script type="application/ld+json">
@@ -32,7 +38,7 @@
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "name": "Jason Patino",
-    "image": "https://github.com/groovedonkey/jasonpatinorealty/blob/main/jasonprofile-h_l.jpg?raw=true",
+    "image": "./jasonprofile-h_l.jpg",
     "description": "REALTOR®, Mentor, and Senior Director of Recruiting specializing in Tampa Bay real estate",
     "address": {
       "@type": "PostalAddress",
@@ -76,173 +82,6 @@
     "url": "http://www.isellfl.me/team/jason-patino"
   }
   </script>
-
-  <style>
-    /* Base Styles */
-    body{
-      font-family:'Inter',sans-serif;
-      background-color:#0a0f1f;
-      color:#e0e0e0;
-      overflow-x:hidden;
-      position:relative;
-      z-index:0;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background-image:url('https://github.com/groovedonkey/jasonpatinorealty/blob/main/homebg.png?raw=true');
-      background-size:cover;
-      background-position:center;
-      background-attachment:fixed;
-      opacity:.35;
-      z-index:-1;
-    }
-
-    /* Custom Color Palette */
-    .bg-gold-500{background-color:#D4AF37;}
-    .text-gold-500{color:#D4AF37;}
-    .border-gold-500{border-color:#D4AF37;}
-    .hover\:bg-gold-600:hover{background-color:#C39D30;}
-    .bg-navy-900{background-color:rgba(10,15,31,.95);}
-    .bg-navy-800{background-color:rgba(16,26,53,.95);}
-    .bg-navy-700{background-color:rgba(26,36,68,.95);}
-
-    /* Header Background */
-    .header-bg{
-      background-image:url('https://images.unsplash.com/photo-1620023190867-009d18e8035b?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');
-      background-size:cover;
-      background-position:center;
-      position:relative;
-    }
-    .header-bg::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background-color:rgba(10,15,31,.7);
-      z-index:1;
-    }
-    .header-content{position:relative;z-index:2;}
-
-    /* Video Placeholder Styling */
-    .video-placeholder{
-      position:relative;
-      aspect-ratio:16/9;
-      background:#000;
-      border-radius:.75rem;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      border:2px solid rgba(212,175,55,.4);
-      cursor:pointer;
-      transition:transform .3s,border-color .3s;
-      box-shadow:0 10px 20px rgba(0,0,0,.3);
-    }
-    .video-placeholder:hover{
-      transform:translateY(-5px);
-      border-color:#D4AF37;
-    }
-    .video-placeholder-icon{
-      width:4.5rem;
-      height:4.5rem;
-      color:rgba(255,255,255,.9);
-      z-index:10;
-      transition:transform .3s,opacity .3s;
-      filter:drop-shadow(0 2px 5px rgba(0,0,0,.5));
-    }
-    .video-placeholder:hover .video-placeholder-icon{
-      transform:scale(1.15);
-      opacity:1;
-    }
-    .video-placeholder-text{
-      position:absolute;
-      bottom:1rem;
-      left:1rem;
-      font-size:.875rem;
-      color:rgba(255,255,255,.7);
-    }
-    .video-placeholder img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:brightness(.7);
-      transition:filter .3s;
-    }
-    .video-placeholder:hover img{filter:brightness(.6);}
-
-    /* Carousel Styles */
-    .carousel-container{
-      position:relative;
-      overflow:hidden;
-      border-radius:.75rem;
-      box-shadow:0 15px 30px rgba(0,0,0,.4);
-    }
-    .carousel-track{
-      display:flex;
-      transition:transform .5s ease-in-out;
-      padding-bottom:2rem;
-    }
-    .carousel-slide{
-      flex:0 0 100%;
-      box-sizing:border-box;
-      padding:1rem;
-    }
-    @media (min-width:768px){
-      .carousel-slide{flex:0 0 calc(100% / 3);}
-    }
-    .carousel-dots{
-      position:absolute;
-      bottom:1rem;
-      left:50%;
-      transform:translateX(-50%);
-      display:flex;
-      gap:.6rem;
-    }
-    .carousel-dot{
-      width:.8rem;
-      height:.8rem;
-      border-radius:50%;
-      background-color:rgba(255,255,255,.5);
-      transition:background-color .3s,transform .3s;
-      cursor:pointer;
-    }
-    .carousel-dot.active{
-      background-color:#D4AF37;
-      transform:scale(1.2);
-    }
-
-    /* Scroll Animation Classes */
-    .fade-in-up{
-      opacity:0;
-      transform:translateY(20px);
-      transition:opacity .6s ease-out,transform .6s ease-out;
-    }
-    .fade-in-up.animate{
-      opacity:1;
-      transform:translateY(0);
-    }
-    .slide-in-left{
-      opacity:0;
-      transform:translateX(-50px);
-      transition:opacity .6s ease-out,transform .6s ease-out;
-    }
-    .slide-in-left.animate{
-      opacity:1;
-      transform:translateX(0);
-    }
-    .slide-in-right{
-      opacity:0;
-      transform:translateX(50px);
-      transition:opacity .6s ease-out,transform .6s ease-out;
-    }
-    .slide-in-right.animate{
-      opacity:1;
-      transform:translateX(0);
-    }
-  </style>
 </head>
 
 <body class="antialiased">
@@ -295,7 +134,7 @@
            style="background-image:url('https://images.unsplash.com/photo-1519782845869-9856f7773dfd?auto=format&fit=crop&q=80&w=1920&h=1080&ixlib=rb-4.0.3');">
     <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="relative z-10 p-8 rounded-lg fade-in-up">
-      <img src="https://github.com/groovedonkey/jasonpatinorealty/blob/main/jasonprofile-h_l.jpg?raw=true" 
+      <img src="./jasonprofile-h_l.jpg" 
            alt="Jason Patino - Tampa Bay REALTOR and Senior Director of Recruiting" 
            class="mx-auto mb-6 w-36 h-36 md:w-48 md:h-48 rounded-full object-cover border-4 border-gold-500 shadow-xl"/>
       <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold text-white drop-shadow-lg leading-tight">Jason Patino</h1>
@@ -349,7 +188,14 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div class="fade-in-up delay-200">
             <div class="relative aspect-video rounded-xl overflow-hidden border-2 border-gold-500/40 shadow-2xl max-w-xl mx-auto">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/-LiiQ-Iz2vM?si=1Pv9k1_53RnxwUG1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <iframe class="absolute top-0 left-0 w-full h-full"
+                      src="https://www.youtube.com/embed/-LiiQ-Iz2vM?si=1Pv9k1_53RnxwUG1"
+                      title="LPT Realty Introduction Video"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+                      loading="lazy"></iframe>
             </div>
           </div>
           <article class="text-left fade-in-up delay-400">
@@ -424,7 +270,15 @@
               Interview for MVT
             </a>
           </div>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/te0eOeWSZfk?si=I1Loj8QOEpxCdmo7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="video-responsive fade-in-up">
+            <iframe src="https://www.youtube.com/embed/te0eOeWSZfk?si=I1Loj8QOEpxCdmo7"
+                    title="Military Veterans Team Introduction Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                    loading="lazy"></iframe>
+          </div>
         </div>
       </div>
     </section>
@@ -437,38 +291,27 @@
         <div id="carousel-vets" class="carousel-container shadow-2xl fade-in-up delay-200">
           <div class="carousel-track">
             <div class="carousel-slide carousel-video" data-index="0">
-              <div class="video-placeholder">
-                <img src="https://images.unsplash.com/photo-1521404323133-c1ffcf4cf314?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 1"/>
-                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
-                <span class="video-placeholder-text">Vet Testimonial 1 - Tap to play</span>
+              <div class="flex justify-center items-center h-full">
+                <iframe class="max-w-full rounded-xl shadow-2xl border-2 border-gold-500/40 w-full aspect-video"
+                        src="https://www.youtube.com/embed/Dee5aVjTjRQ" title="Vet Testimonial 1" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
               </div>
             </div>
             <div class="carousel-slide carousel-video" data-index="1">
-              <div class="video-placeholder">
-                <img src="https://images.unsplash.com/photo-1534065633-979de8782a20?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 2"/>
-                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
-                <span class="video-placeholder-text">Vet Testimonial 2 - Tap to play</span>
+              <div class="flex justify-center items-center h-full">
+                <iframe class="max-w-full rounded-xl shadow-2xl border-2 border-gold-500/40 w-full aspect-video"
+                        src="https://www.youtube.com/embed/092WcqCDiQA" title="Vet Testimonial 2" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
               </div>
             </div>
             <div class="carousel-slide carousel-video" data-index="2">
-              <div class="video-placeholder">
-                <img src="https://images.unsplash.com/photo-1521404323133-c1ffcf4cf314?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 3"/>
-                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
-                <span class="video-placeholder-text">Vet Testimonial 3 - Tap to play</span>
-              </div>
-            </div>
-            <div class="carousel-slide carousel-video" data-index="3">
-              <div class="video-placeholder">
-                <img src="https://images.unsplash.com/photo-1534065633-979de8782a20?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 4"/>
-                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
-                <span class="video-placeholder-text">Vet Testimonial 4 - Tap to play</span>
-              </div>
-            </div>
-            <div class="carousel-slide carousel-video" data-index="4">
-              <div class="video-placeholder">
-                <img src="https://images.unsplash.com/photo-1521404323133-c1ffcf4cf314?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3" alt="Vet Testimonial 5"/>
-                <svg class="video-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
-                <span class="video-placeholder-text">Vet Testimonial 5 - Tap to play</span>
+              <div class="flex justify-center items-center h-full">
+                <iframe class="max-w-full rounded-xl shadow-2xl border-2 border-gold-500/40 w-full aspect-video"
+                        src="https://www.youtube.com/embed/G6VBH_vTUmI" title="Vet Testimonial 3" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
               </div>
             </div>
           </div>
@@ -487,13 +330,7 @@
           </p>
         </div>
 
-        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"
-              class="bg-navy-900 p-8 rounded-xl shadow-2xl fade-in-up">
-          <!-- Netlify honeypot field for spam protection (hidden from users) -->
-          <p class="hidden">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-          </p>
-          
+        <form id="contact-form" class="bg-navy-900 p-8 rounded-xl shadow-2xl fade-in-up">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label for="name" class="block text-gray-300 font-semibold mb-2">Name *</label>
@@ -531,16 +368,14 @@
     </section>
 
     <!-- Confirmation Popup -->
-    <div id="confirmation-popup" style="display:none; position:fixed; inset:0; background-color:rgba(0,0,0,.75); z-index:9999; align-items:center; justify-content:center;">
-      <div id="popup-content" style="background-color:#101a35; padding:2.5rem; border-radius:1rem; max-width:28rem; width:90%; text-align:center; transform:scale(.95); opacity:0; transition:transform .3s ease-out, opacity .3s ease-out; box-shadow:0 20px 40px rgba(0,0,0,.5);">
+    <div id="confirmation-popup" class="popup-overlay">
+      <div id="popup-content" class="popup-content">
         <svg class="mx-auto mb-4" width="64" height="64" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
-        <h3 style="font-size:1.75rem; font-weight:700; color:#fff; margin-bottom:1rem;">Thanks for your interest!</h3>
-        <p style="color:#e0e0e0; margin-bottom:1.5rem;">I'll be in touch right away to get you started!</p>
-        <button id="close-popup-btn" style="background-color:#D4AF37; color:#fff; font-weight:700; padding:.75rem 2rem; border-radius:.5rem; border:none; cursor:pointer; transition:background-color .3s; hover:background-color:#C39D30;">
-          Close
-        </button>
+        <h3 class="popup-title">Thanks for your interest!</h3>
+        <p class="popup-message">I'll be in touch right away to get you started!</p>
+        <button id="close-popup-btn" class="popup-close-btn">Close</button>
       </div>
     </div>
 
@@ -561,167 +396,7 @@
   </footer>
 
   <!-- JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Mobile menu toggle
-      const menuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const openIcon = document.getElementById('menu-open-icon');
-      const closeIcon = document.getElementById('menu-close-icon');
-
-      menuButton.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.toggle('hidden');
-        openIcon.classList.toggle('hidden', !isHidden);
-        closeIcon.classList.toggle('hidden', isHidden);
-        menuButton.setAttribute('aria-expanded', String(!isHidden));
-      });
-
-      // Close mobile menu when link clicked
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          openIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-          menuButton.setAttribute('aria-expanded', 'false');
-        });
-      });
-
-      // Carousel setup function
-      function setupCarousel(rootId, dotsId) {
-        const root = document.getElementById(rootId);
-        if (!root) return;
-
-        const track = root.querySelector('.carousel-track');
-        const slides = Array.from(track.querySelectorAll('.carousel-slide'));
-        const dotsContainer = document.getElementById(dotsId);
-        
-        let currentGroup = 0;
-        let slidesPerView = window.innerWidth >= 768 ? 3 : 1;
-        let autoRotate;
-
-        const groupCount = () => Math.max(1, Math.ceil(slides.length / slidesPerView));
-
-        function renderDots() {
-          if (!dotsContainer) return;
-          dotsContainer.innerHTML = '';
-          const total = groupCount();
-          for (let i = 0; i < total; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', `Go to slide group ${i + 1}`);
-            dot.addEventListener('click', () => {
-              goTo(i);
-              pause();
-              resumeLater();
-            });
-            dotsContainer.appendChild(dot);
-          }
-        }
-
-        function updateDots() {
-          if (!dotsContainer) return;
-          const dots = dotsContainer.querySelectorAll('.carousel-dot');
-          dots.forEach((d, i) => d.classList.toggle('active', i === currentGroup));
-        }
-
-        function goTo(groupIndex) {
-          const total = groupCount();
-          currentGroup = (groupIndex + total) % total;
-          track.style.transform = `translateX(-${100 * currentGroup}%)`;
-          updateDots();
-        }
-
-        function next() { goTo(currentGroup + 1); }
-        function pause() { clearInterval(autoRotate); }
-        function start() {
-          pause();
-          autoRotate = setInterval(next, 10000);
-        }
-        function resumeLater() { setTimeout(start, 15000); }
-
-        // Pause carousel when video clicked
-        track.querySelectorAll('.carousel-video').forEach(card => {
-          card.addEventListener('click', () => {
-            pause();
-            resumeLater();
-          });
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-          const newSPV = window.innerWidth >= 768 ? 3 : 1;
-          if (newSPV !== slidesPerView) {
-            slidesPerView = newSPV;
-            track.style.transition = 'none';
-            renderDots();
-            goTo(0);
-            setTimeout(() => {
-              track.style.transition = 'transform .5s ease-in-out';
-            }, 50);
-          }
-        });
-
-        // Initialize
-        renderDots();
-        goTo(0);
-        start();
-      }
-
-      // Initialize both carousels
-      setupCarousel('carousel-brokerage', 'dots-brokerage');
-      setupCarousel('carousel-vets', 'dots-vets');
-
-      // Scroll animations with Intersection Observer
-      const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            entry.target.classList.toggle('animate', entry.isIntersecting);
-          });
-        }, { threshold: 0.1 });
-        
-        elements.forEach(el => observer.observe(el));
-      };
-      animateOnScroll();
-
-      // Contact form popup (works with Netlify Forms)
-      const contactForm = document.getElementById('contact-form');
-      const confirmationPopup = document.getElementById('confirmation-popup');
-      const popupContent = document.getElementById('popup-content');
-      const closePopupButton = document.getElementById('close-popup-btn');
-
-      if (contactForm && confirmationPopup && closePopupButton) {
-        contactForm.addEventListener('submit', (e) => {
-          // Show popup immediately (Netlify will handle the actual submission)
-          showPopup();
-          
-          // Note: We're NOT preventing default - Netlify needs the form to submit naturally
-          // The popup gives immediate user feedback while Netlify processes in the background
-        });
-
-        const showPopup = () => {
-          confirmationPopup.style.display = 'flex';
-          setTimeout(() => {
-            popupContent.style.transform = 'scale(1)';
-            popupContent.style.opacity = '1';
-          }, 10);
-        };
-
-        const closePopup = () => {
-          popupContent.style.transform = 'scale(0.95)';
-          popupContent.style.opacity = '0';
-          setTimeout(() => {
-            confirmationPopup.style.display = 'none';
-            contactForm.reset();
-          }, 300);
-        };
-
-        closePopupButton.addEventListener('click', closePopup);
-        confirmationPopup.addEventListener('click', (e) => {
-          if (e.target === confirmationPopup) closePopup();
-        });
-      }
-    });
-  </script>
+  <script src="./config.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>

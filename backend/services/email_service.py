@@ -6,8 +6,8 @@ from email.mime.multipart import MIMEMultipart
 
 logger = logging.getLogger(__name__)
 
-SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_HOST = os.getenv("SMTP_HOST", "mail.groovedonkey.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
 SMTP_USER = os.getenv("SMTP_USER", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL", "")
@@ -58,10 +58,15 @@ def send_contact_notification(name: str, email: str, phone: str, message: str):
     msg.attach(MIMEText(html_body, "html"))
 
     try:
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.sendmail(SMTP_USER, NOTIFY_EMAIL, msg.as_string())
+        if SMTP_PORT == 465:
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.sendmail(SMTP_USER, NOTIFY_EMAIL, msg.as_string())
+        else:
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                server.starttls()
+                server.login(SMTP_USER, SMTP_PASSWORD)
+                server.sendmail(SMTP_USER, NOTIFY_EMAIL, msg.as_string())
         logger.info(f"Notification email sent for contact '{name}'.")
     except Exception as e:
         logger.error(f"Failed to send notification email: {e}")

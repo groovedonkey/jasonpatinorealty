@@ -13,13 +13,17 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL", "")
 
 
-def send_contact_notification(name: str, email: str, phone: str, message: str):
+def send_contact_notification(
+    first_name: str, last_name: str, business_name: str,
+    phone: str, email: str, interest: str, message: str,
+):
     """Send an email notification when a new contact form is submitted."""
     if not all([SMTP_USER, SMTP_PASSWORD, NOTIFY_EMAIL]):
         logger.warning("Email not configured — skipping notification.")
         return
 
-    subject = f"New Contact Form Submission from {name}"
+    full_name = f"{first_name} {last_name}"
+    subject = f"New Contact Form Submission from {full_name}"
 
     html_body = f"""
     <html>
@@ -28,19 +32,27 @@ def send_contact_notification(name: str, email: str, phone: str, message: str):
         <table style="border-collapse: collapse; width: 100%; max-width: 500px;">
             <tr>
                 <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Name</td>
-                <td style="padding: 8px; border-bottom: 1px solid #eee;">{name}</td>
+                <td style="padding: 8px; border-bottom: 1px solid #eee;">{full_name}</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Business</td>
+                <td style="padding: 8px; border-bottom: 1px solid #eee;">{business_name or "Not provided"}</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Phone</td>
+                <td style="padding: 8px; border-bottom: 1px solid #eee;">{phone}</td>
             </tr>
             <tr>
                 <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Email</td>
                 <td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:{email}">{email}</a></td>
             </tr>
             <tr>
-                <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Phone</td>
-                <td style="padding: 8px; border-bottom: 1px solid #eee;">{phone or "Not provided"}</td>
+                <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Interested In</td>
+                <td style="padding: 8px; border-bottom: 1px solid #eee;">{interest}</td>
             </tr>
             <tr>
-                <td style="padding: 8px; font-weight: bold; vertical-align: top;">Message</td>
-                <td style="padding: 8px;">{message}</td>
+                <td style="padding: 8px; font-weight: bold; vertical-align: top;">Comments</td>
+                <td style="padding: 8px;">{message or "None"}</td>
             </tr>
         </table>
         <p style="margin-top: 20px; color: #888; font-size: 12px;">

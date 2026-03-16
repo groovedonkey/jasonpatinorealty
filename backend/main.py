@@ -28,8 +28,10 @@ ALLOWED_ORIGINS = os.getenv(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Drop and recreate tables to apply schema changes (safe — only test data exists)
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
-    logger.info("Database tables created.")
+    logger.info("Database tables recreated with updated schema.")
     yield
 
 
@@ -58,27 +60,35 @@ def create_contact(payload: ContactCreate, db: Session = Depends(get_db)):
     """Save a contact form submission, push to Google Sheets, and send email notification."""
     try:
         contact = Contact(
-            name=payload.name,
-            email=payload.email,
+            first_name=payload.first_name,
+            last_name=payload.last_name,
+            business_name=payload.business_name,
             phone=payload.phone,
+            email=payload.email,
+            interest=payload.interest,
             message=payload.message,
         )
         db.add(contact)
         db.commit()
         db.refresh(contact)
-        logger.info(f"Contact saved: {contact.id} — {contact.name}")
+        logger.info(f"Contact saved: {contact.id} — {contact.first_name} {contact.last_name}")
     except Exception as e:
         db.rollback()
         logger.error(f"Database error: {e}")
         raise HTTPException(status_code=500, detail="Failed to save contact.")
 
+    full_name = f"{contact.first_name} {contact.last_name}"
+
     # Google Sheets — fire and log errors, don't block the response
     try:
         append_contact_to_sheet(
-            name=contact.name,
+            first_name=contact.first_name,
+            last_name=contact.last_name,
+            business_name=contact.business_name or "",
+            phone=contact.phone,
             email=contact.email,
-            phone=contact.phone or "",
-            message=contact.message,
+            interest=contact.interest,
+            message=contact.message or "",
             created_at=contact.created_at.isoformat(),
         )
     except Exception as e:
@@ -87,10 +97,13 @@ def create_contact(payload: ContactCreate, db: Session = Depends(get_db)):
     # Email notification — fire and log errors, don't block the response
     try:
         send_contact_notification(
-            name=contact.name,
+            first_name=contact.first_name,
+            last_name=contact.last_name,
+            business_name=contact.business_name or "",
+            phone=contact.phone,
             email=contact.email,
-            phone=contact.phone or "",
-            message=contact.message,
+            interest=contact.interest,
+            message=contact.message or "",
         )
     except Exception as e:
         logger.error(f"Email notification failed: {e}")

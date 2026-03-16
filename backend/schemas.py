@@ -4,18 +4,24 @@ from datetime import datetime
 
 
 class ContactCreate(BaseModel):
-    name: str
+    first_name: str
+    last_name: str
+    business_name: Optional[str] = None
+    phone: str
     email: EmailStr
-    phone: Optional[str] = None
-    message: str
+    interest: str
+    message: Optional[str] = None
 
 
 class ContactResponse(BaseModel):
     id: int
-    name: str
+    first_name: str
+    last_name: str
+    business_name: Optional[str]
+    phone: str
     email: str
-    phone: Optional[str]
-    message: str
+    interest: str
+    message: Optional[str]
     created_at: datetime
 
     model_config = {"from_attributes": True}

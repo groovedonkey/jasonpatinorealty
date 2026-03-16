@@ -335,29 +335,56 @@
         <form id="contact-form" class="bg-navy-900 p-8 rounded-xl shadow-2xl fade-in-up">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <label for="name" class="block text-gray-300 font-semibold mb-2">Name *</label>
-              <input type="text" id="name" name="name" required
+              <label for="first_name" class="block text-gray-300 font-semibold mb-2">First Name *</label>
+              <input type="text" id="first_name" name="first_name" required
                      class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all"
-                     placeholder="Your Name"/>
+                     placeholder="First Name"/>
             </div>
+            <div>
+              <label for="last_name" class="block text-gray-300 font-semibold mb-2">Last Name *</label>
+              <input type="text" id="last_name" name="last_name" required
+                     class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all"
+                     placeholder="Last Name"/>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="business_name" class="block text-gray-300 font-semibold mb-2">Business Name</label>
+              <input type="text" id="business_name" name="business_name"
+                     class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all"
+                     placeholder="Company or Brokerage (Optional)"/>
+            </div>
+            <div>
+              <label for="phone" class="block text-gray-300 font-semibold mb-2">Phone *</label>
+              <input type="tel" id="phone" name="phone" required
+                     class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all"
+                     placeholder="(123) 456-7890"/>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label for="email" class="block text-gray-300 font-semibold mb-2">Email *</label>
               <input type="email" id="email" name="email" required
                      class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all"
                      placeholder="your.email@example.com"/>
             </div>
+            <div>
+              <label for="interest" class="block text-gray-300 font-semibold mb-2">I'm Interested In *</label>
+              <select id="interest" name="interest" required
+                      class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all">
+                <option value="" disabled selected class="text-gray-500">Select an option</option>
+                <option value="Realtor">I Need a Realtor</option>
+                <option value="LPT Realty">I Want to Know About LPT Realty</option>
+                <option value="MVT">I Want to Know About the Military Veterans Team</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
           </div>
           <div class="mb-6">
-            <label for="phone" class="block text-gray-300 font-semibold mb-2">Phone</label>
-            <input type="tel" id="phone" name="phone"
-                   class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all"
-                   placeholder="(123) 456-7890"/>
-          </div>
-          <div class="mb-6">
-            <label for="message" class="block text-gray-300 font-semibold mb-2">Message *</label>
-            <textarea id="message" name="message" rows="5" required
+            <label for="message" class="block text-gray-300 font-semibold mb-2">Comments</label>
+            <textarea id="message" name="message" rows="4"
                       class="w-full px-4 py-3 bg-navy-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500 transition-all resize-none"
-                      placeholder="Tell me how I can help you..."></textarea>
+                      placeholder="Anything else you'd like us to know..."></textarea>
           </div>
           <div class="text-center">
             <button type="submit"

@@ -31,7 +31,10 @@ def _get_client() -> Optional[gspread.Client]:
         return None
 
 
-def append_contact_to_sheet(name: str, email: str, phone: str, message: str, created_at: str):
+def append_contact_to_sheet(
+    first_name: str, last_name: str, business_name: str,
+    phone: str, email: str, interest: str, message: str, created_at: str,
+):
     """Append a new contact row to the configured Google Sheet."""
     client = _get_client()
     if client is None:
@@ -40,9 +43,9 @@ def append_contact_to_sheet(name: str, email: str, phone: str, message: str, cre
     try:
         sheet = client.open_by_key(SPREADSHEET_ID).sheet1
         sheet.append_row(
-            [name, email, phone or "", message, created_at],
+            [first_name, last_name, business_name, phone, email, interest, message, created_at],
             value_input_option="USER_ENTERED",
         )
-        logger.info(f"Appended contact '{name}' to Google Sheet.")
+        logger.info(f"Appended contact '{first_name} {last_name}' to Google Sheet.")
     except Exception as e:
         logger.error(f"Failed to append to Google Sheet: {e}")

@@ -28,10 +28,8 @@ ALLOWED_ORIGINS = os.getenv(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Drop and recreate tables to apply schema changes (safe — only test data exists)
-    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
-    logger.info("Database tables recreated with updated schema.")
+    logger.info("Database tables created.")
     yield
 
 

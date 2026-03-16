@@ -8,9 +8,9 @@ logger = logging.getLogger(__name__)
 
 SMTP_HOST = os.getenv("SMTP_HOST", "mail.groovedonkey.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
-SMTP_USER = os.getenv("SMTP_USER", "")
+SMTP_USER = os.getenv("SMTP_USER", "patino@groovedonkey.com")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
-NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL", "")
+NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL", "patino@groovedonkey.com")
 
 
 def send_contact_notification(

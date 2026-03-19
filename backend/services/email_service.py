@@ -79,6 +79,6 @@ def send_contact_notification(
                 server.starttls()
                 server.login(SMTP_USER, SMTP_PASSWORD)
                 server.sendmail(SMTP_USER, NOTIFY_EMAIL, msg.as_string())
-        logger.info(f"Notification email sent for contact '{name}'.")
+        logger.info(f"Notification email sent for contact '{full_name}'.")
     except Exception as e:
         logger.error(f"Failed to send notification email: {e}")
